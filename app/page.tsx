@@ -49,6 +49,10 @@ export default async function Home() {
         <p>password : patient</p>
         <p>To login as patient</p>
       </div>
+      <div className="text-center">
+        This page is public, anyone can see this page. we will style this page
+        later.
+      </div>
     </>
   );
 }

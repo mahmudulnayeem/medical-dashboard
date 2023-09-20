@@ -60,4 +60,18 @@ export const options: NextAuthOptions = {
       },
     }),
   ],
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        //@ts-ignore
+        token.role = user.role;
+      }
+      return token;
+    },
+    async session({ session, user, token }) {
+      //@ts-ignore
+      if (session.user) session.user.role = token.role;
+      return session;
+    },
+  },
 };

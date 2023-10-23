@@ -1,7 +1,12 @@
 import { getServerSession } from "next-auth/next";
+import Image from "next/image";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import React from "react";
 import { options } from "~/app/api/auth/[...nextauth]/options";
+import logo from "../../../public/images/logo.png";
+import { GoReport } from 'react-icons/go'
+import { BiHistory } from 'react-icons/bi'
 const pathologyLayout = async ({ children }: { children: React.ReactNode }) => {
   const session = await getServerSession(options);
   //@ts-ignore
@@ -9,12 +14,27 @@ const pathologyLayout = async ({ children }: { children: React.ReactNode }) => {
     redirect("/");
   }
   return (
-    <html>
-      <body>
-        pathologyLayout
+    <div className="drawer lg:drawer-open">
+      <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+      <div className="drawer-content flex flex-col  ">
         {children}
-      </body>
-    </html>
+        <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
+
+      </div>
+      <div className="drawer-side">
+        <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
+        <ul className="menu p-4 w-80 min-h-full bg-mix  text-white">
+          {/* Sidebar content here */}
+          {/* logo */}
+          <Image width={220} className="rounded-lg" src={logo} alt="Doctor" ></Image>
+          <br />
+          <li className="font-medium border-2 border-white text-white text-lg rounded-md my-2"><Link href={'/pathology/pending'} ><GoReport />
+            Pending</Link></li>
+          <li className="font-medium border-2 border-white text-white text-lg rounded-md my-2"><Link href={'/pathology/history'} ><BiHistory />
+            History</Link></li>
+        </ul>
+      </div>
+    </div>
   );
 };
 

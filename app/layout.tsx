@@ -13,7 +13,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <SessionProvider>{children}</SessionProvider>
+        <SessionProvider>{children}
+        
+        
+        
+        
+        
+        </SessionProvider>
       </body>
     </html>
   );

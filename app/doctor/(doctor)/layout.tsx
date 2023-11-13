@@ -1,13 +1,10 @@
 import { getServerSession } from "next-auth/next";
+import Image from "next/image";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import React from "react";
 import { options } from "~/app/api/auth/[...nextauth]/options";
-import logo from "../../../public/images/logo.png";
-import { MdConnectWithoutContact } from 'react-icons/md'
-import { GoReport } from 'react-icons/go'
-import { BiHistory } from 'react-icons/bi'
-import Link from "next/link";
-import Image from "next/image";
+import navLinks from "./navlinks";
 const DoctorLayout = async ({ children }: { children: React.ReactNode }) => {
   const session = await getServerSession(options);
   //@ts-ignore
@@ -19,29 +16,41 @@ const DoctorLayout = async ({ children }: { children: React.ReactNode }) => {
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col  ">
         {children}
-        <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
-
+        <label
+          htmlFor="my-drawer-2"
+          className="btn btn-primary drawer-button lg:hidden"
+        >
+          Open drawer
+        </label>
       </div>
       <div className="drawer-side">
-        <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
+        <label
+          htmlFor="my-drawer-2"
+          aria-label="close sidebar"
+          className="drawer-overlay"
+        ></label>
         <ul className="menu p-4 w-80 min-h-full bg-mix  text-white">
           {/* Sidebar content here */}
           {/* logo */}
-          <Image width={220} className="rounded-lg" src={logo} alt="Doctor" ></Image>
+          <Image
+            width={220}
+            className="rounded-lg"
+            src={"/images/logo.png"}
+            height={100}
+            alt="Doctor"
+          ></Image>
           <br />
-          <li className="font-medium border-2 border-white text-white text-lg rounded-md my-2"><Link href={'/doctor/appointments'}><MdConnectWithoutContact />
-            Appointments</Link></li>
-            <li className="font-medium border-2 border-white text-white text-lg rounded-md my-2"><Link href={'/doctor/history'} ><BiHistory />
-            History</Link></li>
-            <li className="font-medium border-2 border-white text-white text-lg rounded-md my-2"><Link href={'/doctor/patientReport'} ><GoReport />
-            Patients Report</Link></li>
-            
-
+          {navLinks.map((link) => (
+            <li className="font-medium border-2 border-white text-white text-lg rounded-md my-2">
+              <Link href={`/doctor/${link.link}`}>
+                <link.icon className="inline-block mr-2" />
+                {link.name}
+              </Link>
+            </li>
+          ))}
         </ul>
-
       </div>
     </div>
-
   );
 };
 

@@ -2,6 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
+:root{
+  --first-color:#605bff;
+  --background-color:#f1f1ff;
+  --card-color:#ffffff;
+  --text-color:#ffb12d;
+
+}
+/* text color */
+.text-mix{
+  color:var(--first-color)
+}
+.text-mix-2{
+  color:var(--background-color)
+}
+.text-mix-3{
+  color:var(--card-color)
+}
+.text-mix-4{
+  color:var(--text-color)
+}
+/* background color */
+.bg-mix{
+  background: var(--first-color);
+}
+.bg-mix-2{
+  background: var(--background-color);
+}
+.bg-mix-3{
+  background: var(--card-color);
+}
+/* button */
+.btn-mix{
+  background: var(--first-color);
+  color: white;
+}
+/* 
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -24,4 +60,4 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
-}
+} */

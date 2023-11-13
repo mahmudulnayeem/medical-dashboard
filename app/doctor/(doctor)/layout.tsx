@@ -32,16 +32,21 @@ const DoctorLayout = async ({ children }: { children: React.ReactNode }) => {
         <ul className="menu p-4 w-80 min-h-full bg-mix  text-white">
           {/* Sidebar content here */}
           {/* logo */}
-          <Image
-            width={220}
-            className="rounded-lg"
-            src={"/images/logo.png"}
-            height={100}
-            alt="Doctor"
-          ></Image>
+          <Link href="/">
+            <Image
+              width={220}
+              className="rounded-lg"
+              src={"/images/logo.png"}
+              height={100}
+              alt="Doctor"
+            />
+          </Link>
           <br />
           {navLinks.map((link) => (
-            <li className="font-medium border-2 border-white text-white text-lg rounded-md my-2">
+            <li
+              key={link.link}
+              className="font-medium border-2 border-white text-white text-lg rounded-md my-2"
+            >
               <Link href={`/doctor/${link.link}`}>
                 <link.icon className="inline-block mr-2" />
                 {link.name}
